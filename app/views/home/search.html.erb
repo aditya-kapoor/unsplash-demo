@@ -1,0 +1,23 @@
+<div class="row row-cols-3 row-cols-md-3 g-4">
+  <% @results.each do |result| %>
+    <div class="col">
+      <div class="card">
+        <%= image_tag result.urls.small, class: 'card-img-top', alt: result.alt_description %>
+        <div class="card-body">
+          <p class="card-text"><%= result.description %></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= link_to result.user.username, result.user.portfolio_url %></li>
+          <li class="list-group-item"><%= result.user.bio %></li>
+          <li class="list-group-item"><%= result.likes %> Like(s)</li>
+        </ul>
+        <div class="card-body">
+          <%= link_to 'View', result.links.html, class: 'card-link', target: :_blank %>
+          <%= link_to 'Download', result.links.download, class: 'card-link' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @results, theme: 'bootstrap-5' %>
